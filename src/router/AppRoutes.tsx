@@ -3,7 +3,7 @@ import RegistrationForm from '../pages/RegistrationPage';
 
 const AppRoutes = () => {
     return(
-        <div id='app-routes'>
+        <div className='container-fluid'>
             <Switch>
                 <Route path='/' exact component={RegistrationForm}/>
             </Switch>
