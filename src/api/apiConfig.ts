@@ -6,6 +6,7 @@ const instance = axios.create ({
     headers: {
         'Access-Control-Allow-Origin': 'http://localhost:3001',
         'Access-Control-Allow-Methods': 'POST,GET,PUT,DELETE,OPTIONS',
+        'Accept': 'application/json',
         
         'Content-type': 'application/json',
         'Access-Control-Allow-Headers':'X-PINGOTHER',
