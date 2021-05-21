@@ -33,8 +33,9 @@ export const GlobalProvider: React.FC = ({ children }) => {
           }
     }
     const postUsers = async (register: User) =>{
+        console.log(register);
         try {
-            let { data } = await instance.post('/user',{register});
+            let { data } = await instance.post('/user',register);
             dispatch({ type: 'POST_USERS', payload: data });
           } catch (e) {
             console.log(e);
