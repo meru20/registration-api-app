@@ -7,13 +7,16 @@ const initialState = {
     user: undefined,
     postUsers: () => {},
     getUsers: () =>  {},
+    alert: false,
 }
 const appReducer = (state: any, action: any) => {
     switch (action.type) {
         case 'GET_USERS':
             return { ...state, users: action.payload};
         case 'POST_USER':
-            return { ...state, users: action.payload}  
+            return { ...state, users: action.payload,alert: false}  
+        case 'ALERT':
+                return {...state, alert: action.payload}
         default:
             return state;      
     }
@@ -33,6 +36,7 @@ export const GlobalProvider: React.FC = ({ children }) => {
           }
     }
     const postUsers = async (register: User) =>{
+        dispatch({type: 'AlERT',payload: true})
         console.log(register);
         try {
             let { data } = await instance.post('/user',register);
@@ -48,6 +52,7 @@ export const GlobalProvider: React.FC = ({ children }) => {
             user: state.user,
             postUsers,
              getUsers,
+             alert:state.alert,
             }}>
           {children} {/* <AppRouter/> */}
         </GlobalContext.Provider>
