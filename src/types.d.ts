@@ -14,4 +14,5 @@ type InitialStateType = {
     user: User | undefined;
     postUsers: (register:User) =>  void;
     getUsers: () => void;
+    alert: boolean;
 }

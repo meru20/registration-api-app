@@ -1,14 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { useForm } from 'react-hook-form';
+import Alert from '../components/Alert';
 
-
-
-// interface UserProps {
-//     user: User;
-//   }
-
-// const RegistrationForm:React.FC<UserProps> = (user) => {
 const RegistrationForm = () => {
     const [register , setRegister] = useState<User>({
         email: '',
@@ -16,7 +9,16 @@ const RegistrationForm = () => {
         firstName:'',
         lastName: '',
     });
-    const { users, postUsers, getUsers, user } = useContext(GlobalContext);
+    const { alert, postUsers, getUsers, user } = useContext(GlobalContext);
+
+const clearForm = () => {
+    setRegister({
+        email: '',
+        password:'',
+        firstName:'',
+        lastName: '',
+    })
+  }
 
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
@@ -27,9 +29,18 @@ const RegistrationForm = () => {
 
     useEffect(() => {
         getUsers();
+        clearForm()
       }, []);
+    //   if (alert){
+    //       return <Alert/>
+    //   }
     return (
         <div id='form'>
+            {alert? (
+                <Alert/>
+            ):(
+                ''
+                )}
             <div className='row mb-5 mt-3'>
         <div className='col-6 offset-3'>
           <div className='register-box'>
@@ -47,8 +58,7 @@ const RegistrationForm = () => {
                 className='form-control'
                 name='firstName'
                 placeholder='First Name'
-                 value={user?.firstName}
-                // ref = {register() }
+                value={user?.firstName}
                 onChange={event => {
                     setRegister({...register, firstName:event.target.value})
             
